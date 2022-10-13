@@ -12,3 +12,5 @@ addtional coding with candidate
 added in master branche 11th commits 
 
 branche 생성전에 edit test
+
+make bugfix branch and on bugfix branch
