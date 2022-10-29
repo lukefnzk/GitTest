@@ -5,3 +5,5 @@ test02
 2. master branch 2nd commit
 
 3. On master branch 3rd commit
+
+4. Detched Head Testing #3 commit
