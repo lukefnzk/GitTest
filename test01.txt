@@ -16,3 +16,5 @@ branche 생성전에 edit test
 make bugfix branch and on bugfix branch
 
 Git Detached Head Testing
+
+On branch candidate testing for --no-ff
