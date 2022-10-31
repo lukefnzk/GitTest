@@ -7,3 +7,7 @@ test02
 3. On master branch 3rd commit
 
 4. Detched Head Testing #3 commit
+
+On branch candidate2 testing for --no-ff #1
+
+On branch candidate2 testing for --no-ff #2
