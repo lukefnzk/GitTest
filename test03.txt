@@ -4,7 +4,7 @@ branche 생성전 testing
 
 Detached Head branch testing
 
- token테스트
+ branch graph test
 
  2차 2FA테스트
  
