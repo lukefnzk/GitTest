@@ -4,7 +4,7 @@ branche 생성전 testing
 
 Detached Head branch testing
 
- branch graph test
+ branch graph test & order branch merge
 
  2차 2FA테스트
  
@@ -13,3 +13,7 @@ Detached Head branch testing
  231222_01 1st added & mody code
  
  231222_02 add code
+ 
+ 231222_03 order branch add programming
+ 
+ 231222_04 oder branch add2 programming
