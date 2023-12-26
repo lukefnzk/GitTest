@@ -19,3 +19,5 @@ Detached Head branch testing
  231222_04 oder branch add2 programming
  
  231226_github Branch Protection Rule
+ 
+ 231226_02 remotes/origin/HEAD -> origin/master 확인차 commit
