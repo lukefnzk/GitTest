@@ -17,3 +17,5 @@ Detached Head branch testing
  231222_03 order branch add programming
  
  231222_04 oder branch add2 programming
+ 
+ 231226_github Branch Protection Rule
