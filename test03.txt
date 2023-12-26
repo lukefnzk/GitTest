@@ -21,3 +21,5 @@ Detached Head branch testing
  231226_github Branch Protection Rule
  
  231226_02 remotes/origin/HEAD -> origin/master 확인차 commit
+ 
+ 231226_03 develop Branch & PR Test & Branch Protection
