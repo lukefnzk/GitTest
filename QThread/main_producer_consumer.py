@@ -3,7 +3,7 @@ import time
 from queue import Queue, Empty
 from PySide6.QtWidgets import QApplication, QMainWindow
 from PySide6.QtCore import QThread, Signal
-from PySide6.QtGui import QStandardItemModel, QStandardItem
+from PySide6.QtGui import QStandardItemModel, QStandardItem, QColor
 from qthread_ui import Ui_MainWindow
 
 
@@ -128,7 +128,19 @@ class MainWindow(QMainWindow):
         consumer.start()
     
     def update_ui(self, data_type, value):
-        self.model.appendRow(QStandardItem(str(value)))
+        if data_type == 'number':
+            # 숫자는 밝은 민트색으로 표시
+            item = QStandardItem(str(value))
+            item.setForeground(QColor('#00FFB3'))  # 밝은 민트색
+        elif data_type == 'alpha':
+            # 알파벳은 빨간색으로 표시
+            item = QStandardItem(str(value))
+            item.setForeground(QColor('yellow'))
+        else:
+            # 기타 데이터는 기본 색상으로 표시
+            item = QStandardItem(str(value))
+        
+        self.model.appendRow(item)
         self.ui.listView.scrollToBottom()
     
     def handle_error(self, error_msg):
