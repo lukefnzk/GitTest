@@ -14,6 +14,9 @@
 | `05_auto_food_daily.py` | 종합 예제 — 하루 식단 관리 클래스 (AutoFoodDaily 맛보기) |
 | `06_function_vs_class.py` | 함수 버전 vs 클래스 버전 비교, 그리고 둘의 혼용 |
 | `07_property_and_str.py` | `__str__`(보기 좋은 출력), `@property`(속성처럼 쓰기 + 값 검사) |
+| `08_decorator_basics.py` | 데코레이터(`@`)의 정체 — 직접 만들기, `*args`, `functools.wraps`, 인자 받는 데코레이터 |
+| `09_args_kwargs.py` | `*args`/`**kwargs` 양방향(모으기·풀기), 인자 섞어 쓰는 순서 |
+| `10_magic_methods.py` | 매직(던더) 메서드 — `__str__`/`__repr__`, `__eq__`, `__lt__`, `__add__`, `__len__` |
 
 ## 실행 방법
 
