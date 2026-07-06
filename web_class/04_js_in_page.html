@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!-- 04. JS 를 페이지에 연결하기
+     지금까지의 HTML/CSS 는 '정적'이었다. 이제 트랙 1 에서 배운 JS 를 붙여
+     페이지를 '움직이게' 만든다. -->
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>04 JS 연결</title>
+  </head>
+  <body>
+    <h1>JS 연결</h1>
+    <p id="output">여기는 잠시 후 JS 가 바꾼다…</p>
+
+    <!-- ===== JS 를 넣는 방법 ===== -->
+
+    <!-- 1) 내부 스크립트: <script> 안에 직접 작성.
+         ★ body 의 '맨 끝'에 두는 이유: 위쪽 HTML 이 먼저 다 만들어진 뒤 실행돼야
+            document.querySelector 로 그 요소들을 찾을 수 있기 때문이다. -->
+    <script>
+      console.log("안녕! 이 메시지는 터미널이 아니라 F12 > Console 탭에 뜬다.");
+
+      // 트랙 1 에서 배운 그대로의 JS 가 브라우저에서도 똑같이 돈다
+      const nums = [1, 2, 3];
+      const doubled = nums.map((n) => n * 2); // 04_array_methods 의 map
+      console.log("map 결과:", doubled); // → [2, 4, 6]
+
+      // 페이지의 요소를 찾아 내용을 바꾼다 (05번에서 자세히)
+      document.querySelector("#output").textContent =
+        "JS 가 이 문장으로 바꿨습니다!";
+    </script>
+
+    <!-- 2) 외부 스크립트: 별도 .js 파일을 연결 (실무 기본).
+         defer = 'HTML 을 다 읽은 뒤 실행하라' → head 에 둬도 안전하고, 요소를 찾을 수 있다. -->
+    <script src="04_script.js" defer></script>
+  </body>
+</html>

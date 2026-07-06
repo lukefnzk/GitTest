@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!-- 01. HTML 기초
+     HTML 은 '화면의 뼈대(구조)'를 만드는 마크업 언어다. 프로그래밍 언어가 아니라,
+     '태그(< >)'로 내용을 감싸 '이건 제목', '이건 문단' 처럼 의미를 부여한다.
+     이 파일을 브라우저로 열고, 코드(소스)와 화면을 나란히 비교해 보자. -->
+<html lang="ko">
+  <head>
+    <!-- head : 화면에 '안 보이는' 설정들 (문자셋, 제목, CSS 연결 등) -->
+    <meta charset="UTF-8" />
+    <title>01 HTML 기초</title>
+  </head>
+  <body>
+    <!-- body : 화면에 '보이는' 내용 전부가 여기 들어간다 -->
+
+    <!-- 제목 태그 h1~h6 : 숫자가 클수록 작아진다. h1 은 보통 페이지에 하나 -->
+    <h1>가장 큰 제목 (h1)</h1>
+    <h2>소제목 (h2)</h2>
+
+    <!-- 문단 p, 줄바꿈 br -->
+    <p>이것은 문단(paragraph)입니다.<br />br 태그로 줄을 바꿉니다.</p>
+
+    <!-- 강조: strong(굵게·중요), em(기울임·강조) -->
+    <p><strong>굵게</strong> 그리고 <em>기울임</em>.</p>
+
+    <!-- 링크 a : href 로 이동할 주소, target="_blank" 는 새 탭에서 열기 -->
+    <a href="https://developer.mozilla.org/ko/" target="_blank">MDN 문서 (새 탭)</a>
+
+    <!-- 이미지 img : src 는 주소, alt 는 대체 텍스트(이미지가 깨지거나 안 보일 때 표시) -->
+    <img src="https://placehold.co/120x60?text=image" alt="예시 이미지" />
+
+    <!-- 목록: ul(순서 없음·점) / ol(순서 있음·숫자), 각 항목은 li -->
+    <ul>
+      <li>사과</li>
+      <li>바나나</li>
+    </ul>
+
+    <!-- div : 의미 없는 '박스'(구역 묶기용), span : 의미 없는 '줄 안의 조각' -->
+    <div>
+      <span>span</span> 은 문장 <span>중간</span> 의 일부를 감싼다.
+    </div>
+
+    <!-- 입력 요소 (05·06 에서 JS 로 다룬다) -->
+    <input type="text" placeholder="여기에 입력" />
+    <button>버튼</button>
+
+    <!-- ★ 시맨틱 태그 : div 대신 '의미 있는 이름'의 박스.
+         화면 모양은 div 와 같지만, 검색엔진·접근성·코드 가독성에 좋다. -->
+    <header>header — 페이지 머리말</header>
+    <nav>nav — 메뉴</nav>
+    <main>
+      <section>section — 주제별 구역</section>
+      <article>article — 독립적인 글 한 편</article>
+    </main>
+    <footer>footer — 페이지 꼬리말</footer>
+
+    <!-- [정리] HTML 은 '무엇인가(구조·의미)'를 담당한다.
+         '어떻게 보이나(색·크기·배치)'는 다음 02번 CSS 가 담당한다. -->
+  </body>
+</html>

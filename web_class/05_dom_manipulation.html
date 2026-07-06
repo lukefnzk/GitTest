@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!-- 05. DOM 조작 — JS 로 화면 요소를 다루기
+     DOM(Document Object Model) = 브라우저가 HTML 을 '객체 트리'로 만든 것.
+     JS 로 이 트리에서 요소를 찾아(select) 내용·스타일을 바꾸고, 새로 만들거나 지운다. -->
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>05 DOM 조작</title>
+    <style>
+      body { font-family: sans-serif; margin: 20px; }
+      .highlight { background: yellow; font-weight: bold; }
+      #list li { padding: 4px; }
+    </style>
+  </head>
+  <body>
+    <h1 id="title">원래 제목</h1>
+    <p class="msg">첫 번째 메시지</p>
+    <p class="msg">두 번째 메시지</p>
+    <ul id="list">
+      <li>기존 항목 1</li>
+      <li>기존 항목 2</li>
+    </ul>
+
+    <script>
+      // ------------------------------------------------------------
+      // 1) 요소 선택 — CSS 선택자를 그대로 쓴다
+      // ------------------------------------------------------------
+      const title = document.querySelector("#title"); // id 는 # (하나만)
+      const firstMsg = document.querySelector(".msg"); // 조건 맞는 '첫' 요소
+      const allMsg = document.querySelectorAll(".msg"); // '전부' (배열 비슷한 목록)
+
+      // ------------------------------------------------------------
+      // 2) 내용 바꾸기 — textContent(글자만) vs innerHTML(태그로 해석)
+      // ------------------------------------------------------------
+      title.textContent = "JS 가 바꾼 제목"; // 안전 — 순수 글자로
+      firstMsg.innerHTML = "<em>기울인</em> 메시지"; // 태그가 해석됨 (외부 입력엔 주의)
+
+      // ------------------------------------------------------------
+      // 3) 스타일 / 클래스 바꾸기
+      // ------------------------------------------------------------
+      title.style.color = "crimson"; // 직접 스타일 (CSS 속성 이름은 camelCase: background-color → backgroundColor)
+      firstMsg.classList.add("highlight"); // CSS 클래스 붙이기 (스타일은 CSS 에 두는 편이 깔끔)
+
+      // querySelectorAll 결과는 forEach 로 순회 (04_array_methods 의 forEach!)
+      allMsg.forEach((p, i) => (p.textContent = `${p.textContent} (#${i})`));
+
+      // ------------------------------------------------------------
+      // 4) 새 요소 만들어 붙이기 (createElement → appendChild)
+      // ------------------------------------------------------------
+      const list = document.querySelector("#list");
+      const li = document.createElement("li"); // 빈 <li> 를 메모리에 생성
+      li.textContent = "JS 가 추가한 항목"; // 내용 채우고
+      li.classList.add("highlight");
+      list.appendChild(li); // 실제 화면(트리)에 붙인다
+
+      // ------------------------------------------------------------
+      // 5) 요소 지우기
+      // ------------------------------------------------------------
+      const firstItem = list.querySelector("li"); // list 안의 첫 li
+      firstItem.remove(); // 화면에서 제거
+
+      // ★ 여기까지가 '수동' DOM 조작이다. 09번 투두앱에서 이걸 조합하고,
+      //   10번에서 "React 는 이 조작을 대신 해준다"로 이어진다.
+    </script>
+  </body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!-- 07. fetch 로 데이터를 받아 화면에 그리기
+     트랙 1(09_async)의 fetch/async 와 05번의 DOM 조작을 합친다.
+     '서버 데이터 → 화면' 이 흐름이 React 앱이 하는 일의 핵심이다. -->
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>07 fetch & render</title>
+    <style>
+      body { font-family: sans-serif; margin: 20px; }
+      button { padding: 8px 14px; cursor: pointer; }
+      #users { list-style: none; padding: 0; }
+      #users li { padding: 10px; border: 1px solid #ddd; border-radius: 6px; margin: 6px 0; }
+      .name { font-weight: bold; }
+      .email { color: #888; font-size: 0.9em; }
+    </style>
+  </head>
+  <body>
+    <h1>사용자 목록</h1>
+    <button id="loadBtn">불러오기</button>
+    <p id="status"></p>
+    <ul id="users"></ul>
+
+    <script>
+      const statusEl = document.querySelector("#status");
+      const listEl = document.querySelector("#users");
+
+      async function loadUsers() {
+        statusEl.textContent = "불러오는 중…"; // 로딩 표시
+        listEl.innerHTML = ""; // 이전 결과 비우기
+        try {
+          // 09_async 에서 배운 fetch + await
+          const res = await fetch("https://jsonplaceholder.typicode.com/users");
+          const users = await res.json(); // JSON 응답 → 객체 배열
+
+          // ★ 04_array_methods 의 map: 데이터 배열 → HTML 문자열 배열 → 화면
+          //   (React 의 리스트 렌더링과 '개념'이 완전히 같다)
+          listEl.innerHTML = users
+            .map(
+              (u) => `
+                <li>
+                  <span class="name">${u.name}</span>
+                  <span class="email">(${u.email})</span>
+                </li>`
+            )
+            .join(""); // 배열을 하나의 문자열로 합침 (join 없으면 쉼표가 낀다)
+
+          statusEl.textContent = `${users.length}명 로드 완료`;
+        } catch (e) {
+          statusEl.textContent = "불러오기 실패 (인터넷 연결 확인)";
+          console.error(e);
+        }
+      }
+
+      document.querySelector("#loadBtn").addEventListener("click", loadUsers);
+    </script>
+
+    <!-- [주의] 이 페이지는 인터넷이 필요하다. 파일을 더블클릭(file://)했을 때
+         fetch 가 브라우저에 막히면, 이 폴더에서 로컬 서버로 열자:
+           npx serve        (또는)        python -m http.server
+         그 뒤 http://localhost:.../07_fetch_and_render.html 로 접속.
+         React 개발도 이런 로컬 서버 위에서 진행된다. -->
+  </body>
+</html>

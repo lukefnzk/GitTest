@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!-- 08. 미니 프로젝트 — 카운터
+     지금까지 배운 걸 합친 첫 '앱'. 핵심 패턴 하나를 몸에 익히자:
+       [상태(state)] 를 바꾸고 → [render()] 로 화면을 다시 그린다.
+     이 'state → render' 사고방식이 바로 React 의 핵심이다. -->
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>08 카운터</title>
+    <style>
+      body { font-family: sans-serif; margin: 20px; text-align: center; }
+      #value { font-size: 64px; margin: 20px; }
+      button { font-size: 20px; padding: 8px 20px; margin: 4px; cursor: pointer; }
+      .negative { color: crimson; } /* 음수일 때 빨강 */
+    </style>
+  </head>
+  <body>
+    <h1>카운터</h1>
+    <div id="value">0</div>
+    <button id="minus">−</button>
+    <button id="reset">리셋</button>
+    <button id="plus">＋</button>
+
+    <script>
+      // ★ 1. 상태(state) — 화면이 보여줄 '데이터'. 지금은 숫자 하나.
+      let count = 0;
+
+      const valueEl = document.querySelector("#value");
+
+      // ★ 2. render() — '현재 state 를 화면에 반영'하는 일을 함수 하나로 몰아둔다.
+      //    상태가 바뀔 때마다 이 함수만 부르면 화면은 항상 최신이 된다.
+      function render() {
+        valueEl.textContent = count;
+        // 조건부 스타일 (05번 classList): 두 번째 인자가 true 면 클래스 붙임 → 음수면 빨강
+        valueEl.classList.toggle("negative", count < 0);
+      }
+
+      // ★ 3. 이벤트 → state 변경 → render() 다시 호출
+      document.querySelector("#plus").addEventListener("click", () => {
+        count++;
+        render();
+      });
+      document.querySelector("#minus").addEventListener("click", () => {
+        count--;
+        render();
+      });
+      document.querySelector("#reset").addEventListener("click", () => {
+        count = 0;
+        render();
+      });
+
+      render(); // 처음 한 번 그려서 초기 화면 표시
+
+      // [React 미리보기] React 라면 'count 를 바꾸면 render 를 자동으로' 해준다:
+      //   const [count, setCount] = useState(0);   // 11_modern_syntax 에서 본 그 형태!
+      //   setCount(count + 1);   // ← 이것만 하면 화면이 알아서 갱신된다 (render 수동 호출 불필요)
+    </script>
+  </body>
+</html>

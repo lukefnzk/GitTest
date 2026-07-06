@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!-- 03. CSS 레이아웃 — Flexbox
+     요소를 '가로/세로로 정렬'하는 요즘 표준 방법. 부모에 display:flex 를 주면
+     자식들이 한 줄로 늘어서고, 몇 가지 속성으로 정렬을 제어한다. -->
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>03 Flexbox</title>
+    <style>
+      body { font-family: sans-serif; margin: 20px; }
+
+      /* ★ 부모에 display:flex → 자식들이 '가로로' 늘어선다 */
+      .row {
+        display: flex;
+        gap: 12px; /* 자식 사이 간격 (margin 안 써도 됨) */
+        background: #eee;
+        padding: 12px;
+        margin-bottom: 8px;
+      }
+      .item {
+        background: #4a90d9;
+        color: white;
+        padding: 20px;
+        border-radius: 6px;
+      }
+
+      /* justify-content : 가로(주축) 방향 정렬 */
+      .center  { justify-content: center; }        /* 가운데로 몰기 */
+      .between { justify-content: space-between; }  /* 양끝에 붙이고 사이는 균등 */
+
+      /* align-items : 세로(교차축) 정렬 — 높이가 다른 것들을 맞출 때 */
+      .middle { align-items: center; height: 100px; }
+
+      /* flex-direction: column → 세로로 쌓기 */
+      .col { display: flex; flex-direction: column; gap: 8px; width: 150px; }
+    </style>
+  </head>
+  <body>
+    <h2>1) 기본 — display:flex (가로로 늘어섬)</h2>
+    <div class="row">
+      <div class="item">A</div>
+      <div class="item">B</div>
+      <div class="item">C</div>
+    </div>
+
+    <h2>2) justify-content: center (가운데)</h2>
+    <div class="row center">
+      <div class="item">A</div>
+      <div class="item">B</div>
+    </div>
+
+    <h2>3) justify-content: space-between (양끝 + 균등)</h2>
+    <div class="row between">
+      <div class="item">왼쪽</div>
+      <div class="item">오른쪽</div>
+    </div>
+
+    <h2>4) align-items: center (세로 가운데) — 내비게이션 바에 자주 쓰는 조합</h2>
+    <div class="row middle between">
+      <div class="item">로고</div>
+      <div class="item">메뉴</div>
+    </div>
+
+    <h2>5) flex-direction: column (세로로 쌓기)</h2>
+    <div class="col">
+      <div class="item">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
+    </div>
+
+    <!-- [팁] 딱 두 가지만 기억하면 절반은 끝난다:
+         justify-content(가로 정렬) / align-items(세로 정렬).
+         F12 로 .row 요소를 고른 뒤 값을 바꿔보며 눈으로 익히자. -->
+  </body>
+</html>
