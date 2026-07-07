@@ -57,3 +57,50 @@ console.log(counter2()); // → 1  (counter 와 완전히 독립적)
 //       return inc
 // JS 는 nonlocal 선언 없이 바깥 변수를 그냥 읽고 쓸 수 있다.
 // ★ React 의 useState 도 "값을 기억하는" 이 클로저 원리 위에서 돌아간다.
+
+// ------------------------------------------------------------
+// 4) ★ 스코프 체인 — 중첩 함수는 변수를 '바깥으로 훑어' 찾는다
+// ------------------------------------------------------------
+// 함수 안에 함수, 그 안에 또 함수를 만들면, 안쪽 함수는 변수를 찾을 때
+// "내 안 → 바로 바깥 → 그 바깥 → ..." 순서로 밖을 향해 거슬러 올라간다.
+// 이 사슬이 '스코프 체인(scope chain)'. 안쪽은 바깥을 다 보지만, 바깥은
+// 안쪽을 못 본다 (3번의 클로저도 결국 이 체인을 통째로 기억하는 것이다).
+function outer() {
+  const a = "A(outer)"; // ① 가장 바깥 층
+  function middle() {
+    const b = "B(middle)"; // ② 중간 층
+    function inner() {
+      const c = "C(inner)"; // ③ 가장 안쪽 층
+      // inner 는 c(자기 것)뿐 아니라 b, a 까지 바깥 층을 전부 본다
+      return `${a} + ${b} + ${c}`;
+    }
+    return inner();
+  }
+  return middle();
+}
+console.log(outer()); // → A(outer) + B(middle) + C(inner)
+// outer 입장에선 b, c 가 안 보인다 — 아래 주석을 풀면 ReferenceError.
+// function outerFail() { return b; }  // ← b 는 middle 안에 있어 바깥에선 못 봄
+
+// ★ 같은 이름이 여러 층에 있으면? 가장 가까운(안쪽)에서 찾고 멈춘다 = 섀도잉(shadowing)
+function floors() {
+  const where = "1층";
+  function up() {
+    const where = "2층"; // 바깥의 where 를 '가린다'
+    function top() {
+      // top 엔 where 가 없다 → 밖으로 훑다가 '2층'을 먼저 만나 멈춤 (1층까진 안 감)
+      return where;
+    }
+    return top();
+  }
+  return up();
+}
+console.log(floors()); // → 2층  (가장 가까운 '2층'에서 탐색이 멈춘다)
+
+// [Python 비교] Python 도 동일 (LEGB 규칙: Local→Enclosing→Global→Built-in 순 탐색).
+//   def outer():
+//       a = "A"
+//       def inner():
+//           return a   # 바깥 a 를 그대로 읽음
+//       return inner()
+// '읽기'는 JS·Python 둘 다 자유. 단 '쓰기'는 Python 이 nonlocal/global 선언을 요구한다(3번 참고).
