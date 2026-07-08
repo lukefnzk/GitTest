@@ -5,9 +5,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## What this repo is
 
 A personal learning/practice repository ("GitTest"). It is not a single application — it
-collects five unrelated study tracks. There is no build system or test runner (the lone
+collects six unrelated study tracks. Most tracks have no build step (the
 `javascript_class/package.json` exists only to enable ES modules, not to install anything);
-the `test0*.txt` files and root `README.md` are Git-workflow practice notes, not test fixtures.
+the **exception** is `react_class/`, a real Vite project that requires `npm install`.
+The `test0*.txt` files and root `README.md` are Git-workflow practice notes, not test fixtures.
 
 The real code artifacts:
 
@@ -21,6 +22,9 @@ The real code artifacts:
 5. **`web_class/`** — browser front-end lessons (`01_*` → `10_*`): HTML, CSS, DOM, events, `fetch`,
    plus two mini-projects (counter, todo). Opened in a browser, not run with `node`. See
    `web_class/README.md`.
+6. **`react_class/`** — a real **Vite + React** project (React 19) teaching the "core 8" concepts
+   (`src/lessons/01_*` → `08_*`). Phase 1 of the React/Next.js on-ramp; every lesson carries
+   `[PHP 비교]` / `[web_class 비교]` comments. See `react_class/README.md` and `react_class/SETUP.md`.
 
 ## QThread/ — PySide6 concurrency examples
 
@@ -84,6 +88,32 @@ take someone from `python_class` toward React/Next.js.
 
 When adding lessons, keep the numbering contiguous, preserve the Python-comparison comments in
 `javascript_class/`, and keep every example runnable standalone.
+
+## react_class/ — React learning track (Vite, Phase 1 of the React/Next.js plan)
+
+The **destination** of the `python_class → javascript_class → web_class` line. A real Vite + React
+project (unlike the other tracks, it needs `npm install`), teaching the agreed **"core 8"**: JSX &
+components, props, `useState`, events, list rendering, conditional rendering, controlled forms, and
+`useEffect` + `fetch`. The learner comes from **PHP**, so lessons carry `[PHP 비교]` comments (the
+analog of `javascript_class`'s `[Python 비교]`) plus `[web_class 비교]` ties back to the hand-rolled
+`state → render()` pattern.
+
+Structure & conventions:
+- `src/lessons/01_*.jsx` → `08_*.jsx` — the learning body. Same house style as the other tracks
+  (top-of-file explanation block, dense Korean comments, inline `// →` expected behavior).
+- `src/App.jsx` is a lesson switcher (a "remote control"); it intentionally uses concepts from
+  lessons 03–06, with a comment telling the learner that's expected.
+- Lesson `08` deliberately demonstrates the **CSR/SEO weakness** (empty first paint, data arrives via
+  `useEffect`) to motivate **Phase 2 = Next.js** (routing, SSR, SEO). Keep that framing if extending.
+
+Run it (from inside `react_class/`):
+```
+cd react_class
+npm install      # once
+npm run dev      # → http://localhost:5173
+```
+See `react_class/SETUP.md` for the beginner-level environment walkthrough (npm commands, HMR,
+troubleshooting, and how to scaffold a fresh Vite project). `node_modules/` and `dist/` are gitignored.
 
 ## Git workflow
 

@@ -1,0 +1,31 @@
+/* index.css — 전체 공통 기본 스타일 (레슨 내용과 무관, 보기 좋으라고 두는 것) */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, 'Segoe UI', 'Malgun Gothic', sans-serif;
+  color: #1f2933;
+  background: #f5f7fa;
+  line-height: 1.55;
+}
+
+h2 {
+  margin: 0 0 14px;
+  font-size: 22px;
+  color: #08060d;
+}
+
+code {
+  background: #eef1f5;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-family: 'Cascadia Code', Consolas, monospace;
+  font-size: 0.88em;
+}
+
+ul {
+  margin: 8px 0;
+  padding-left: 22px;
+}
