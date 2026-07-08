@@ -108,22 +108,57 @@ npm run dev              # ② 개발 서버 켜기
 
 ---
 
-## B. 내 손으로 "새" 프로젝트를 처음부터 만들기
+## B. 완전히 밑바닥부터 — 빈 폴더 만들기 → node_modules 만들기
 
-나중에 새 앱을 만들 때 쓰는, **가장 중요한 명령**입니다. 원하는 상위 폴더에서:
+"아무것도 없는 상태"에서 폴더를 만들고 설치까지 가는 길입니다.
+먼저 **원리(B-1)** 로 "빈 폴더에 node_modules가 어떻게 생기는지"를 눈으로 본 뒤,
+**실전(B-2)** 으로 React 프로젝트를 한 번에 만드세요.
+
+### B-1. 원리 — 빈 폴더에 `node_modules`가 "생기는" 과정 (최소 실습)
+
+npm의 기본 동작을 눈으로 확인하는 연습입니다. 아무 라이브러리(`dayjs`)나 하나 깔아봅니다.
+원하는 위치(예: 바탕화면, 문서 폴더)에서 터미널을 열고:
 
 ```bash
-npm create vite@latest my-app -- --template react
-cd my-app
-npm install
-npm run dev
+mkdir my-first      # ① 빈 폴더 생성 — 이 폴더가 '프로젝트 폴더'가 된다
+cd my-first         #    그 폴더 안으로 이동
+                    #    → 지금 폴더는 텅 빔 (package.json 없음, node_modules 없음)
+
+npm init -y         # ② package.json 생성 (설치 목록을 적어둘 '명세서'). 아직 node_modules 없음
+npm install dayjs   # ③ 라이브러리 설치 → 바로 이 순간 node_modules/ 폴더가 "처음" 만들어진다
 ```
 
-- `npm create vite@latest ...` : Vite가 React 프로젝트 뼈대를 자동 생성 (`npx create-vite`와 같음)
-- `-- --template react` : "React(JS) 템플릿으로" 라는 뜻 (TypeScript는 `react-ts`)
+- ①에서 만든 **빈 폴더 = 프로젝트 폴더**. 처음엔 안이 비어 있습니다.
+- ②의 `npm init -y` 가 `package.json` 을 만듭니다(무엇을 설치했는지 적어둘 명세서).
+- ③의 `npm install 이름` 을 하는 **바로 그 순간**, 폴더 안에 `node_modules/` 가 생기고
+  `package.json` 의 `dependencies` 에 그 라이브러리가 기록됩니다.
+
+> 🔑 즉 **`node_modules`는 내가 손으로 만드는 게 아니라, `npm install` 이 자동으로 만들어 주는 폴더**입니다.
+> 빈 폴더 + `npm install` = node_modules 생성. 이게 전부예요.
+> [PHP 비교] `mkdir` → `composer init` → `composer require` 와 완전히 똑같은 3단계입니다.
+
+### B-2. 실전 — React는 `npm create vite` 로 한 번에
+
+B-1을 React용으로 하려면 vite·react 설치에 더해 `index.html`·`main.jsx`·`vite.config.js` 같은
+설정·뼈대 파일까지 손으로 다 만들어야 해서 번거롭습니다. 그래서 실제로는 **그 전부를 한 방에**
+해주는 이 명령을 씁니다. 원하는 상위 폴더에서:
+
+```bash
+npm create vite@latest my-app -- --template react   # 폴더 my-app 생성 + React 뼈대 자동 구성
+cd my-app
+npm install          # node_modules 채우기 (B-1의 ③에 해당)
+npm run dev          # 개발 서버 실행
+```
+
+- `npm create vite@latest my-app ...` 가 **폴더 `my-app` 을 대신 만들어 줍니다.**
+  그래서 여기선 `mkdir` 을 따로 안 해도 됩니다 — B-1의 ①·②를 이 한 줄이 대신 해주는 셈이죠.
+- `-- --template react` : React(JS) 템플릿 (TypeScript는 `react-ts`)
 - 대화형 질문이 뜨면 처음엔 **기본값(Enter)** 으로 진행하세요.
 
-> [PHP 비교] `composer create-project`로 새 프로젝트 뼈대를 받던 것과 같은 역할입니다.
+> [PHP 비교] `composer create-project` 로 새 프로젝트 뼈대를 통째로 받던 것과 같은 역할입니다.
+
+> ⚠️ **정리:** "빈 폴더를 내가 직접 만들어서" 시작하는 건 **B-1**(원리 이해용). 실제 React 작업은
+> 폴더 생성까지 자동으로 해주는 **B-2**를 씁니다. 어느 쪽이든 마지막은 항상 `npm install` → `node_modules` 생성.
 
 ---
 
