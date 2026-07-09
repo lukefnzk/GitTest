@@ -53,6 +53,10 @@ npm run dev      # 개발 서버 켜기 → 터미널에 뜨는 http://localhost
 이 8개로 **작은 앱 하나**(예: 할 일 목록, 또는 API 목록 표시)를 스스로 만들 수 있으면 충분합니다.
 Context·커스텀 훅·상태관리 라이브러리는 지금 몰라도 됩니다. 미련 없이 **Next.js**로 넘어가세요.
 
+넘어가기 전에 **[09_why_nextjs.md](./09_why_nextjs.md)** 를 읽으세요. 08번에서 몸으로 겪은
+CSR·SEO 약점이 왜 Next.js로 이어지는지, **SSR·SSG·ISR**이 각각 무엇인지 정리한 브릿지 문서입니다.
+(`web_class/10_why_react.md`가 React로 넘어가는 다리였던 것과 같은 역할)
+
 ## 🗂 폴더 구조 (자세한 설명은 SETUP.md)
 
 ```
@@ -60,6 +64,8 @@ react_class/
 ├─ index.html          # 시작 HTML (안에 <div id="root">)
 ├─ package.json        # 의존성 목록 + 스크립트 (PHP의 composer.json 같은 것)
 ├─ vite.config.js      # Vite 설정
+├─ SETUP.md            # 환경 구축 (npm·터미널 하나하나)
+├─ 09_why_nextjs.md    # 브릿지: 왜 Next.js인가 (08번 다음에 읽기)
 └─ src/
    ├─ main.jsx         # 진입점: App을 #root에 그림
    ├─ App.jsx          # 레슨을 골라 보여주는 골격(리모컨)
