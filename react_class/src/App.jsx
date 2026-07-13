@@ -22,8 +22,11 @@ import Lesson06 from './lessons/06_conditional.jsx'
 import Lesson07 from './lessons/07_form.jsx'
 import Lesson08 from './lessons/08_effect_fetch.jsx'
 
+// 교재가 아닌 "내 연습장" — lessons/ 바깥에 둬서 구분한다
+import Playground from './playground.jsx'
+
 // 목록 데이터: 번호 · 제목 · 컴포넌트
-// id를 숫자가 아니라 문자열로 둔 이유: '02+' 같은 보너스 번호를 그대로 쓰기 위해
+// id를 숫자가 아니라 문자열로 둔 이유: '02+', '★' 같은 번호를 그대로 쓰기 위해
 const LESSONS = [
   { id: '01', title: '컴포넌트 & JSX', Comp: Lesson01 },
   { id: '02', title: 'props', Comp: Lesson02 },
@@ -34,6 +37,7 @@ const LESSONS = [
   { id: '06', title: '조건부 렌더링', Comp: Lesson06 },
   { id: '07', title: '폼 (input)', Comp: Lesson07 },
   { id: '08', title: 'useEffect + fetch', Comp: Lesson08 },
+  { id: '★', title: '내 연습장', Comp: Playground }, // 교재 아님. 마음껏 부수는 곳
 ]
 
 function App() {
