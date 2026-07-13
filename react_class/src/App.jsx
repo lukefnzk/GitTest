@@ -11,9 +11,10 @@
 import { useState } from 'react'
 import './App.css'
 
-// 8개 레슨 컴포넌트를 불러온다
+// 레슨 컴포넌트를 불러온다 (핵심 8개 + 보너스 02b)
 import Lesson01 from './lessons/01_component_jsx.jsx'
 import Lesson02 from './lessons/02_props.jsx'
+import Lesson02b from './lessons/02b_component_compose.jsx'
 import Lesson03 from './lessons/03_state_usestate.jsx'
 import Lesson04 from './lessons/04_events.jsx'
 import Lesson05 from './lessons/05_list_render.jsx'
@@ -22,19 +23,21 @@ import Lesson07 from './lessons/07_form.jsx'
 import Lesson08 from './lessons/08_effect_fetch.jsx'
 
 // 목록 데이터: 번호 · 제목 · 컴포넌트
+// id를 숫자가 아니라 문자열로 둔 이유: '02+' 같은 보너스 번호를 그대로 쓰기 위해
 const LESSONS = [
-  { id: 1, title: '컴포넌트 & JSX', Comp: Lesson01 },
-  { id: 2, title: 'props', Comp: Lesson02 },
-  { id: 3, title: 'useState (상태)', Comp: Lesson03 },
-  { id: 4, title: '이벤트 핸들링', Comp: Lesson04 },
-  { id: 5, title: '리스트 렌더링', Comp: Lesson05 },
-  { id: 6, title: '조건부 렌더링', Comp: Lesson06 },
-  { id: 7, title: '폼 (input)', Comp: Lesson07 },
-  { id: 8, title: 'useEffect + fetch', Comp: Lesson08 },
+  { id: '01', title: '컴포넌트 & JSX', Comp: Lesson01 },
+  { id: '02', title: 'props', Comp: Lesson02 },
+  { id: '02+', title: '컴포넌트 조립', Comp: Lesson02b },
+  { id: '03', title: 'useState (상태)', Comp: Lesson03 },
+  { id: '04', title: '이벤트 핸들링', Comp: Lesson04 },
+  { id: '05', title: '리스트 렌더링', Comp: Lesson05 },
+  { id: '06', title: '조건부 렌더링', Comp: Lesson06 },
+  { id: '07', title: '폼 (input)', Comp: Lesson07 },
+  { id: '08', title: 'useEffect + fetch', Comp: Lesson08 },
 ]
 
 function App() {
-  const [current, setCurrent] = useState(1) // 지금 보고 있는 레슨 번호
+  const [current, setCurrent] = useState('01') // 지금 보고 있는 레슨 번호
   const active = LESSONS.find((l) => l.id === current)
   const Current = active.Comp // 대문자 변수에 담아야 <Current />로 쓸 수 있다
 
@@ -50,7 +53,7 @@ function App() {
               className={l.id === current ? 'nav-item active' : 'nav-item'}
               onClick={() => setCurrent(l.id)}
             >
-              <span className="num">{String(l.id).padStart(2, '0')}</span>
+              <span className="num">{l.id}</span>
               {l.title}
             </button>
           ))}

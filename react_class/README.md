@@ -30,6 +30,7 @@ npm run dev      # 개발 서버 켜기 → 터미널에 뜨는 http://localhost
 |---|------|----------|----------------------|
 | 01 | `01_component_jsx.jsx` | 컴포넌트 & JSX | HTML을 JS 함수가 돌려줌 (PHP `include` 조각 ↔ 컴포넌트) |
 | 02 | `02_props.jsx` | props (부모→자식 데이터) | 함수 인자 넘기기 (`card($title)` ↔ `<Card title=.../>`) |
+| 02+ | `02b_component_compose.jsx` | **컴포넌트 작성과 조립** (보너스) | `export`/`import`로 파일 쪼개기, `children`(PHP 레이아웃의 `<?= $content ?>`), 함수 props, 상태 끌어올리기 |
 | 03 | `03_state_usestate.jsx` | **useState (상태)** ⭐ | `let state; render()` 수동 패턴의 자동화 |
 | 04 | `04_events.jsx` | 이벤트 핸들링 | `addEventListener` ↔ `onClick` |
 | 05 | `05_list_render.jsx` | 리스트 렌더링 (`.map`+`key`) | `foreach`로 `<li>` 찍기 ↔ `.map()` |
@@ -70,5 +71,9 @@ react_class/
    ├─ main.jsx         # 진입점: App을 #root에 그림
    ├─ App.jsx          # 레슨을 골라 보여주는 골격(리모컨)
    ├─ App.css / index.css
-   └─ lessons/         # ⭐ 여기가 학습 본체 (01~08)
+   ├─ components/      # 재사용 부품 (레슨이 import 해서 쓴다) — 02b가 여기서 Card를 가져온다
+   └─ lessons/         # ⭐ 여기가 학습 본체 (01~08 + 보너스 02b)
 ```
+
+> `components/` 와 `lessons/` 를 나눈 것 자체가 실전 React의 관례입니다.
+> **화면**은 `lessons/`(실전에선 `pages/`), **재사용 부품**은 `components/` 에 둡니다.
