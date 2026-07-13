@@ -42,6 +42,21 @@ npm run dev      # 개발 서버 켜기 → 터미널에 뜨는 http://localhost
 
 ---
 
+## ✍️ 실습 (읽기만 하면 안 늘어요)
+
+레슨을 눈으로 읽는 것과 손으로 치는 것은 다릅니다. 사이드바 맨 아래 **`★ 내 연습장`**
+(`src/playground.jsx`)은 교재가 아니라 **마음껏 부수는 내 작업 공간**입니다.
+
+**[PRACTICE.md](./PRACTICE.md)** 에 단계별 실습 가이드가 있습니다.
+한 번 완성했다고 끝내지 말고, **연습장을 비우고 처음부터 다시** 만들어보세요.
+두 번째는 절반 시간에, 세 번째는 안 보고 됩니다. 그때가 "익혔다"입니다.
+
+| 실습 | 쓰는 개념 | 상태 |
+|------|----------|------|
+| 1. 카드 목록 | `import` · props · `.map()`+`key` · `useState` · 조건부 | ✅ |
+| 2. 할 일 목록 | 폼(controlled input) · 함수 props · 불변성 | 준비 중 |
+| 3. 탭 UI | 조건부 렌더링 · 상태로 화면 전환 | 준비 중 |
+
 ## 🧭 학습 방식
 
 - 이 트랙은 기존 `javascript_class`/`web_class`와 같은 규칙을 따릅니다:
@@ -66,11 +81,13 @@ react_class/
 ├─ package.json        # 의존성 목록 + 스크립트 (PHP의 composer.json 같은 것)
 ├─ vite.config.js      # Vite 설정
 ├─ SETUP.md            # 환경 구축 (npm·터미널 하나하나)
+├─ PRACTICE.md         # ✍️ 실습 가이드 (연습장에서 직접 만들기)
 ├─ 09_why_nextjs.md    # 브릿지: 왜 Next.js인가 (08번 다음에 읽기)
 └─ src/
    ├─ main.jsx         # 진입점: App을 #root에 그림
    ├─ App.jsx          # 레슨을 골라 보여주는 골격(리모컨)
    ├─ App.css / index.css
+   ├─ playground.jsx   # ★ 내 연습장 (교재 아님. 마음껏 부수는 곳)
    ├─ components/      # 재사용 부품 (레슨이 import 해서 쓴다) — 02b가 여기서 Card를 가져온다
    └─ lessons/         # ⭐ 여기가 학습 본체 (01~08 + 보너스 02b)
 ```

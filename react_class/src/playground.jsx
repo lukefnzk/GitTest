@@ -16,6 +16,13 @@
 //   style={{ ... }}    → 인라인 스타일 (객체로 준다. 중괄호 2개!)
 // ============================================================
 import { useState } from 'react'
+import Card from './components/Card.jsx' // 카드 부품
+
+const CARDS = [
+  { id: 1, title: 'React', desc: 'UI를 컴포넌트로 조립하는 라이브러리' },
+  { id: 2, title: 'Vite', desc: '아주 빠른 개발 서버 & 빌드 도구' },
+  { id: 3, title: 'Next.js', desc: 'React에 라우팅과 SSR을 더한 프레임워크' },
+]
 
 // ── 연습용 부품: 마음대로 고치거나 지워도 된다 ──────────────
 function Hello({ name, children }) {
@@ -31,7 +38,7 @@ function Hello({ name, children }) {
 // ============================================================
 export default function Playground() {
   const [count, setCount] = useState(0)
-
+  const [selectedId, setSelectedId] = useState(null)
   return (
     <>
       <h2>★ 내 연습장</h2>
@@ -53,7 +60,20 @@ export default function Playground() {
         <button onClick={() => setCount(0)}>리셋</button>
       </div>
 
-      {/* 3) 여기부터 자유롭게 추가해 보기 */}
+      <h3>카드 목록-single</h3>
+      <Card title={CARDS[0].title} desc={CARDS[0].desc} />
+      <h3>카드 목록-map</h3>
+      {CARDS.map((card) => (
+      <div key={card.id} onClick={() => setSelectedId(card.id)} style={{ cursor: 'pointer' }}>
+        <Card title={card.title} desc={card.desc} />
+      </div>
+    ))}
+
+    {selectedId && (
+        <p className="muted">
+          선택됨: <b>{CARDS.find((c) => c.id === selectedId).title}</b>
+        </p>
+      )}
     </>
   )
 }
