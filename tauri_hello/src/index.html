@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="styles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tauri Hello World</title>
+    <script type="module" src="/main.js" defer></script>
+  </head>
+
+  <body>
+    <main class="container">
+      <h1>👋 Hello, Tauri!</h1>
+      <p class="sub">
+        OS에 내장된 <b>WebView2</b> 안에서 도는 웹페이지<br />
+        (Electron과 달리 Chromium을 통째로 안 껴안는다 → 가볍다)
+      </p>
+
+      <!-- 1) 순수 JS 카운터 — electron_hello 와 완전히 같은 UX -->
+      <button id="greetBtn">인사 받기 (JS)</button>
+      <div id="msg"></div>
+
+      <!-- 2) Tauri 시그니처: JS가 Rust 함수를 직접 호출 (Electron의 preload/IPC에 해당) -->
+      <button id="rustBtn">Rust 호출해서 인사받기</button>
+      <div id="rustMsg"></div>
+
+      <!-- 3) 지금 화면을 그리는 엔진의 정체(UA 문자열) — Electron과 비교해보라 -->
+      <div class="ver" id="ver"></div>
+    </main>
+  </body>
+</html>

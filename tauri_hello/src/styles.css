@@ -1,0 +1,60 @@
+/* [web_class 비교] 그때 배운 CSS 그대로 데스크톱 앱에 쓴다.
+   electron_hello 와 나란히 보기 좋게 같은 다크 테마로 맞췄다.
+   (구분용으로 강조색만 청록으로 — Electron은 보라색) */
+:root {
+  color-scheme: dark;
+}
+body {
+  margin: 0;
+  font-family: 'Malgun Gothic', system-ui, sans-serif;
+  background: #1e1e2e;
+  color: #eeeeee;
+  user-select: none;
+}
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+h1 {
+  margin: 0 0 6px;
+}
+.sub {
+  color: #aaaaaa;
+  margin: 0 0 8px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+button {
+  margin-top: 16px;
+  padding: 10px 22px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  background: #24c8a0;
+  color: #06231d;
+  font-weight: 600;
+}
+button:hover {
+  background: #1fb492;
+}
+#msg,
+#rustMsg {
+  margin-top: 10px;
+  min-height: 22px;
+  font-size: 17px;
+}
+.ver {
+  margin-top: 28px;
+  font-size: 11px;
+  color: #777777;
+  max-width: 92%;
+  word-break: break-all;
+  line-height: 1.5;
+}
