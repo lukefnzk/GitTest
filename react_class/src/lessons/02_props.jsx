@@ -16,6 +16,7 @@
 // ============================================================
 
 // 자식 컴포넌트: props(name, emoji)를 받아 그린다
+// ↓ 이건 "인자 자리에서 바로 구조분해"한 축약형. 아래 [방법 A]와 100% 똑같이 동작한다.
 function Greeting({ name, emoji }) {
   return (
     <p>
@@ -23,6 +24,21 @@ function Greeting({ name, emoji }) {
     </p>
   )
 }
+
+// [방법 A] React는 태그의 속성들을 props 객체 하나로 묶어 첫 인자로 넘긴다.
+//   → props를 통째로 받은 뒤, "순수 JS 구조분해"로 꺼내 써도 결과는 같다.
+//   위 Greeting(축약형)과 아래 GreetingA(펼친형)는 완전히 동일하게 동작한다.
+//   ※ const { name } = props 는 React 문법이 아니라 JavaScript(ES6) 문법!
+//     (javascript_class/11_modern_syntax.js 의 구조분해와 같은 것)
+// function GreetingA(props) {
+//   const { name, emoji } = props   // ← 이 줄은 100% 순수 JS
+//   return (
+//     <p>
+//       {emoji} 안녕하세요, <b>{name}</b>님!
+//     </p>
+//   )
+// }
+// → <Greeting .../> 든 <GreetingA .../> 든 화면 결과는 똑같다.
 
 // props로 받은 값으로 카드 UI를 만드는 재사용 컴포넌트
 function Card({ title, desc }) {
