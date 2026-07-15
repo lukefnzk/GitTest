@@ -5,9 +5,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## What this repo is
 
 A personal learning/practice repository ("GitTest"). It is not a single application — it
-collects six unrelated study tracks. Most tracks have no build step (the
+collects seven numbered learning tracks plus two small desktop-GUI experiments
+(`electron_hello/`, `tauri_hello/`). Most tracks have no build step (the
 `javascript_class/package.json` exists only to enable ES modules, not to install anything);
-the **exception** is `react_class/`, a real Vite project that requires `npm install`.
+the build-step **exceptions** are `react_class/` (a real Vite project, needs `npm install`) and
+`rust_class/` (compiled with Cargo), plus the two desktop experiments.
 The `test0*.txt` files and root `README.md` are Git-workflow practice notes, not test fixtures.
 
 The real code artifacts:
@@ -25,6 +27,13 @@ The real code artifacts:
 6. **`react_class/`** — a real **Vite + React** project (React 19) teaching the "core 8" concepts
    (`src/lessons/01_*` → `08_*`). Phase 1 of the React/Next.js on-ramp; every lesson carries
    `[PHP 비교]` / `[web_class 비교]` comments. See `react_class/README.md` and `react_class/SETUP.md`.
+7. **`rust_class/`** — numbered Rust language taster lessons (`src/bin/01_*` → `05_*`): Hello World,
+   variables (immutability), functions, and the **ownership/borrowing** core. A real Cargo project
+   (needs the Rust toolchain); each lesson is a separate binary run with `cargo run --bin NN_name`.
+   Same house style, with `[JS/Python 비교]` comments. See `rust_class/README.md`.
+8. **`electron_hello/`** & **`tauri_hello/`** — two "same Hello-World, two ways" desktop-GUI
+   experiments (Electron = Node + Chromium; Tauri = Rust + WebView2), built to compare bundle size and
+   startup weight. Each has its own README. `node_modules/`, `target/`, and `bundle/` are gitignored.
 
 ## QThread/ — PySide6 concurrency examples
 
@@ -114,6 +123,36 @@ npm run dev      # → http://localhost:5173
 ```
 See `react_class/SETUP.md` for the beginner-level environment walkthrough (npm commands, HMR,
 troubleshooting, and how to scaffold a fresh Vite project). `node_modules/` and `dist/` are gitignored.
+
+## rust_class/ — Rust language taster (Cargo, multi-binary)
+
+Added after the learner installed Rust to build `tauri_hello/`. A hands-on taste of Rust in the same
+house style as the other tracks (top-of-file explanation block, dense Korean comments, inline `// →`
+expected output, `[JS/Python 비교]` comments). The goal is not language completeness but feeling
+Rust's soul: **immutability-by-default** and **ownership/borrowing**.
+
+Structure & conventions:
+- One Cargo project; each lesson is a **separate binary** under `src/bin/01_hello_world.rs` →
+  `05_borrowing.rs`. Run a lesson from inside `rust_class/`:
+  ```
+  cargo run --bin 01_hello_world
+  ```
+- Lessons `04_ownership` and `05_borrowing` are the point of the track (move semantics, `&` / `&mut`).
+- **"Broken" demos are commented out on purpose.** Because Rust won't compile invalid code (unlike the
+  interpreted tracks), each "don't do this" example is left commented with a `// ← 주석을 풀면 컴파일
+  에러!` note. Uncommenting it and reading the compiler error IS the exercise — preserve this pattern.
+- `target/` (build cache) is gitignored. Needs the Rust toolchain (`cargo` on PATH).
+
+## electron_hello/ & tauri_hello/ — desktop-GUI comparison experiments
+
+Not learning tracks but a deliberate A/B: the **same** Hello-World desktop app (a heading, a JS
+counter button, a version/UA line) built two ways, to compare distribution weight.
+- **`electron_hello/`** — Node + bundled Chromium (main / preload / renderer; `npm start`). Heavy:
+  `node_modules` ≈ 360 MB.
+- **`tauri_hello/`** — Rust backend + the OS's WebView2 (`npm run tauri dev` / `build`). Light: the
+  release exe ≈ 8.5 MB, installers ≈ 2–3 MB. Needs the Rust toolchain; a vanilla (no-framework) template.
+Each folder's README has the full comparison and measurement notes. Build outputs
+(`node_modules/`, `src-tauri/target/`, `bundle/`) are gitignored.
 
 ## Git workflow
 

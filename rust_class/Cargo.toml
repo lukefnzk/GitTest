@@ -1,0 +1,9 @@
+[package]
+name = "rust_class"
+version = "0.1.0"
+edition = "2021"
+
+# 이 프로젝트는 src/bin/ 안의 각 .rs 파일을 '별도 실행파일(레슨)'로 자동 인식한다.
+# 그래서 레슨마다  cargo run --bin 01_hello_world  처럼 골라 실행한다.
+
+[dependencies]
