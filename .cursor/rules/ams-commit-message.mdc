@@ -1,0 +1,47 @@
+---
+description: AMS 커밋 메시지 형식 — 모든 커밋의 기본 표준 (대표 샘플 기준)
+alwaysApply: true
+---
+
+# AMS 커밋 메시지 표준
+
+대표 샘플: NewbizData `84126c4` (ModiCheck2). AMS(`source`) 히스토리와 **같은 형식**이다.
+커밋 요청 시 이 형식을 기본으로 쓴다. 임의로 한 줄만 쓰지 않는다.
+
+## 대표 샘플 (그대로 따를 것)
+
+```
+26.08.14: [Fix] ModiCheck2 빌드 스펙이 .gitignore 에 걸려 저장소에서 빠지던 문제 (Today 4th-commit)
+
+- [Fix] .gitignore 의 *.spec 규칙에 QTUserTool/ModiCheck2/Infochange.spec 예외 추가
+- [Add] Infochange.spec 저장소 편입 — 손으로 쓴 빌드 레시피라 pyinstaller 가 재생성하지 못한다
+- [Add] Infochange.spec 에 조회 횟수 카운터 파일 동봉 — build_seed 의 초기 파일을 _internal 에 배치
+- [Add] 시드 파일은 빌드마다 새로 생성 — 소스 폴더의 실사용 카운터가 배포본에 섞이지 않게 한다
+- [Update] .gitignore 예외 근거 주석 — DataMiningSuite3 쪽 spec 은 build_everything.py:135 가 빌드 전에 지우고 매번 새로 만들므로 계속 무시한다
+
+Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
+```
+
+위 푸터의 Claude 줄은 **Claude가 커밋할 때** 넣는 것이다. Cursor 세션에서는 복사하지 않는다.
+
+## 구조
+
+1. **제목** `YY.MM.DD: [Tag] 요약 (Today Nth-commit)`
+2. **빈 줄**
+3. **본문** `- [Tag] 무엇을 — 왜/근거` (항목마다 태그, `—`로 부연)
+4. **빈 줄**
+5. **Co-authored-by** — 도구에 따라 **하나만**. 둘 다 넣지 않는다.
+
+## Co-authored-by (도구별, 필수)
+
+| 누가 커밋하나 | 넣을 줄 | 넣지 말 것 |
+|---------------|---------|------------|
+| **Cursor** | `Co-authored-by: Cursor <cursoragent@cursor.com>` | Claude Opus … |
+| **Claude** | `Co-Authored-By: Claude Opus … <noreply@anthropic.com>` | Cursor … |
+
+## 주의
+
+- 원문 불릿은 **`-`** (하이픈). GitHub/UI가 `•`로 보여줄 수 있다. 쓸 때는 `-`를 쓴다.
+- 불릿은 기본적으로 **한 줄**. 화면에서 줄이 넘어갈 때 앞이 붙지 않게 보이려면, 의도적 줄바꿈 시 **다음 줄을 스페이스 2칸**으로 들여 본문과 맞춘다.
+- 태그: `[Add]` `[Update]` `[Fix]` `[Remove]` `[Refactor]` `[Docs]`
+- `(Today Nth-commit)` = 그날 그 저장소의 N번째 커밋
